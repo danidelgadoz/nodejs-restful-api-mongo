@@ -24,11 +24,24 @@ function routes(Book) {
 
   bookRouter.route('/books/:bookId')
     .get((req, res) => {
-      Book.findById(req.params.bookId, (err, books) => {
+      Book.findById(req.params.bookId, (err, book) => {
         if (err) {
           return res.send(err);
         }
-        return res.json(books);
+        return res.json(book);
+      })
+    })
+    .put((req, res) => {
+      Book.findById(req.params.bookId, (err, book) => {
+        if (err) {
+          return res.send(err);
+        }
+        book.title = req.body.title;
+        book.author = req.body.author;
+        book.genre = req.body.genre;
+        book.read = req.body.read;
+        book.save();
+        return res.json(book);
       })
     });
 
