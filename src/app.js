@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => res.send('Welcome to my API!'));
+app.get('/', (req, res) => res.send('Node.js Restful API is running'));
 
 app.use('/books', require('./books/bookController'));
 
